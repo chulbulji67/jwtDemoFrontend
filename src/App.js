@@ -6,12 +6,14 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import AddBook from "./components/AddBook";
 import About from "./components/About";
+import Home1 from "./components/Home1";
 
 
 function App() {
   return (
     <div>
     <Navbar />
+    {/* <Home1/> */}
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />

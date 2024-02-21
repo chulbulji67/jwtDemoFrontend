@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
+import { isUserLoggedIn } from '../../service/AuthService';
+
+
+
 
 export default function SimpleNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   const handleLogout = () => {
     // Perform logout logic here
+   console.log("Working")
     setIsLoggedIn(false);
+    
     localStorage.removeItem('token'); // Remove token from localStorage
+    localStorage.removeItem("username");
+    localStorage.removeItem("roles");
+    
 };
 
   return (
@@ -15,8 +24,13 @@ export default function SimpleNavbar() {
     <div className='mx-2'>
         <ul className="flex space-x-4">
             <li><a href="/about">About</a></li>
-            <li><a href="/add-book">Add books</a></li>
-            {isLoggedIn ? ( // If user is logged in
+            {
+              (localStorage.getItem("role") != null 
+              && localStorage.getItem("role") === "ROLE_ADMIN") 
+              && <li><a href="/add-book">Add books</a></li>
+            }
+            
+            {isUserLoggedIn() ? ( // If user is logged in
                 <li><button onClick={handleLogout}>Logout</button></li>
             ) : ( // If user is not logged in
                 <>

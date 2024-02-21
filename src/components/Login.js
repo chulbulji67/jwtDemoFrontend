@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { isUserLoggedIn } from '../service/AuthService';
 
 export default function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(false); 
@@ -16,7 +17,12 @@ export default function Login() {
             console.log("Response from backend:", response.data);
             const token = response.data.jwtToken; 
             localStorage.setItem('token', token);
+            console.log(response.data.username);
+            localStorage.setItem('username', response.data.username);
+            localStorage.setItem("role", response.data.roles[0]);
+            console.log(localStorage.getItem("role"));
             console.log(localStorage.getItem("token"));
+            isUserLoggedIn();
             setIsLoggedIn(true); 
             // Update state or perform other actions based on the response
             navigate('/home');
