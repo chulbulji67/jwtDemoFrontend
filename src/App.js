@@ -7,6 +7,7 @@ import Logout from "./components/Logout";
 import AddBook from "./components/AddBook";
 import About from "./components/About";
 import Home1 from "./components/Home1";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <Route path="/logout" element={<Logout/>}/>
         </Routes>
     </BrowserRouter>
-   
+   <Footer/>
   </div>
   );
 }
